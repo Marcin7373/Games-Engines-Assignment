@@ -12,6 +12,8 @@ Some interesting ways in which i thought of generating these trees and bushes wa
 
 [![YouTube](http://img.youtube.com/vi/VXegg-HGT0s/0.jpg)](http://www.youtube.com/watch?v=VXegg-HGT0s)
 
+Also I thought this was pretty cool even though it's probably not applicable to my project because its 2D.  
+https://trasevol-dog.itch.io/forest
 
 I couldn't find much more that did anything similar to what i want to do other than some tree growing, some of which only upscaled the whole tree.
 
