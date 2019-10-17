@@ -5,11 +5,14 @@ This is a game where i try to combine procedural generation of tree's other thor
 This project shows a way of growing trees in-game similarly to what i need, only my trees will look differently with branches growing lower to the ground where the player is and they will grow towards the player.
 
 ![tree_ref](https://github.com/Marcin7373/Games-Engines-Assignment/blob/master/Ref/tree_ref.gif?raw=true)
+
 By: https://github.com/mattatz/unity-procedural-tree
+
 
 Some interesting ways in which i thought of generating these trees and bushes was without using the inbuilt tree object in unity similar to this video using fractals except i dont want my results to look so symmetrical and planned. My plants need to look and grow dynamically at the player as they move.
 
-[![YouTube](https://img.youtube.com/watch?v=VXegg-HGT0s/0.jpg)](https://www.youtube.com/watch?v=VXegg-HGT0s)
+[![YouTube](http://img.youtube.com/vi/VXegg-HGT0s/0.jpg)](http://www.youtube.com/watch?v=VXegg-HGT0s)
+
 
 I couldn't find much more that did anything similar to what i want to do other than some tree growing, some of which only upscaled the whole tree.
 
