@@ -18,6 +18,9 @@ public class CameraMovement : MonoBehaviour
         if (Input.GetButton("Jump"))
         {
             transform.Translate(0, 0, speed * Time.deltaTime);
+        }else if (Input.GetKey("m"))
+        {
+            transform.Translate(0, 0, -speed * Time.deltaTime);
         }
         
         rotateY = Input.GetAxisRaw("Vertical");
