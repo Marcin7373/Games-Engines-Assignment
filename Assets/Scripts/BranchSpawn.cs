@@ -10,7 +10,6 @@ public class BranchSpawn : MonoBehaviour
     private Transform player;
     private float timer, rate = 1f;   
     private int j = 0;
-    public float deSpawnRad = 40.0f;
 
     void Awake()
     {
@@ -31,18 +30,10 @@ public class BranchSpawn : MonoBehaviour
     {
         timer += Time.deltaTime;
         if (timer > rate && j < treeNum)
-        {         
+        {
             treeTemp[j].SetActive(true);
             timer = 0;
             j++;
-        }
-
-        if ((player.position - transform.position).magnitude > deSpawnRad)
-        {
-            for (int i = 0; i < treeNum; i++)
-            {                
-                //treeTemp[i].SetActive(false);
-            }
         }
     }
 }

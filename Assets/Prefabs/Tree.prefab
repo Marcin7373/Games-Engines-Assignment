@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8007159705336682076}
   - component: {fileID: -420720133531449696}
   - component: {fileID: 5750184982960634908}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,6 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material:
   - {fileID: 2100000, guid: 8e2513c4bb741fe498b047da157db4c1, type: 2}
+  spawnRad: 15
+  deSpawnRad: 60
 --- !u!64 &5750184982960634908
 MeshCollider:
   m_ObjectHideFlags: 0
