@@ -5,6 +5,8 @@ using UnityEngine;
 public class ForestSpawner : MonoBehaviour
 {
     public GameObject spawnerTemp;
+    public GameObject player;
+    public GameObject finish;
     private int rows, cols;
     public GameObject[,] spawner;
     private Transform tr;
@@ -17,13 +19,16 @@ public class ForestSpawner : MonoBehaviour
         tr = GetComponent<Transform>();
         width = tr.localScale.x* 10 - edgeOffset;
         length = tr.localScale.z* 10 - edgeOffset;
-        cols = (int)(width/wGap)+1;
+        cols = (int)(width/wGap)+2;
         rows = (int)(length/lGap)+1;
         spawner = new GameObject[cols,rows];
     }
 
     void Start()
     {
+        finish.transform.position = new Vector3(finish.transform.position.x, finish.transform.position.y, length/10 + 1);
+        player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -length/10 - 1);
+
         for (int r = 0; r < rows; r++)
         {
             for (int c = 0; c < cols; c++)
@@ -38,7 +43,6 @@ public class ForestSpawner : MonoBehaviour
                 }
                 randGap--;
             }
-            
         }
     }
 }

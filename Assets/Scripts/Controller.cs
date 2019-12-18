@@ -70,18 +70,21 @@ public class Controller : MonoBehaviour
         if (collision.gameObject.tag == "Respawn")
         {
             SceneManager.LoadScene(0);
+            dashCooldown = 1f;
         }
         if (collision.gameObject.tag == "Finish")
         {
             SceneManager.LoadScene(0);
+            dashCooldown = 1f;
         }
     }
 
     void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground" && transform.position.y > 5)
+        if (collision.gameObject.tag == "Ground" && transform.position.y > 4)
         {
             SceneManager.LoadScene(0);
+            dashCooldown = 1f;
         }
     }
 }
