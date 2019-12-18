@@ -8,7 +8,7 @@ The maze of branches is distributed using perlin noise on the spawners which spa
 The code layout follows a tree like structure where a branch cluster is spawned by a BranchSpawner which is spawned in a pattern using perlin noise by the ForestSpawner. It also randomly picks BranchSpawners to skip to create holes for the player to get through. That ForestSpawner is then attached to the plane which is generated into a U-curve using a sine wave and perlin noise.
 
 ## Demo
-[![YouTube](http://img.youtube.com/vi/ii049d7UFrg/0.jpg)](https://youtu.be/bqs-oxIBY4U)
+[![YouTube](http://img.youtu.be/bqs-oxIBY4U/0.jpg)](https://youtu.be/bqs-oxIBY4U)
 
 ## Options for Setup
 - In teh Grow script the radius for spawning do control how early the branches grow when the player gets close and despawning which can be decrease to increase performance.
