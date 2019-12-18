@@ -7,6 +7,9 @@ The game starts in a U-shaped plane generated using a sine wave mixed with perli
 The maze of branches is distributed using perlin noise by the spawners which spawn a number of branches which grow independently in clusters. But dont start growing until the player is in range as the growth is quick initially. The branches are spawned on top of the curved and noisy mesh by having the BranchSpawner use raycasting to move to the surface. Each branch grows using Lerping in three stages. First it grows quickly using scale while rotating making it look more dynamic. There are many randomizations that make them grow to different angles or start at different angles as well as Lerping in position slightly making them behave differently from each other. As the growth gets slower it enters the second stage where it grows at a constant rate until third stage where it stops growing simply rotates very slowly toward the player. These branches are turned inactive when the player gets far enough away from them for efficiency.
 The code layout follows a tree like structure where a branch cluster is spawned by a BranchSpawner which is spawned in a pattern using perlin noise by the ForestSpawner. It also randomly picks BranchSpawners to skip to create holes for the player to get through. That ForestSpawner is then attached to the plane which is generated into a U-curve using a sine wave and perlin noise using the TerrainPerlinNoise script.
 
+## Best Part
+The best part is probably the branch growing algorithm combined with the branch spawning making the environment feel alive as it tries to get the player which took alot of time to get to feel right, parts of it moving erratically making it look almost creepy. As well as the branches spawning on an uneven terrain and it being playable as a game not just a tech demo with many options for difficulty adjustment.
+
 ## Demo
 [![YouTube](http://img.youtube.com/vi/bqs-oxIBY4U/0.jpg)](https://youtu.be/bqs-oxIBY4U)
 
