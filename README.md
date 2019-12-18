@@ -1,31 +1,30 @@
 # Goal of Assignment
-This is a game where i try to combine procedural generation of tree's other thorny plants and growing them in a kind of a maze in relation to the player. The player will have to control a ball which will pop if it hits the thorns while trying to get to a checkpoint/exit of the maze. The player will have to avoid these thorny vines and trees as they grow toward the player in a dynamic way.
+This is a game where I try to combine procedural generation of tree like thorny bushes and growing them in a kind of a maze in relation to the player. The player will have to control a ball which when hit by the thorns starts you back at the start. The player will have to avoid these thorny vines/trees as they grow toward the player in a dynamic way. The player has a dash ability where for a limited time they can pass through the throns with a long cooldown. The thorny forest is grown on a perlin noise U-shaped mesh funneling the player towards the goal.
 
-## Similar projects
-This project shows a way of growing trees in-game similarly to what i need, only my trees will look differently with branches growing lower to the ground where the player is and they will grow towards the player.
+## Description (What it does and how it works)
+The game starts in a U-shaped plane generated using a sine wave mixed with perlin noise creating a rough terrain, but not too rough as the player will need to smoothly roll a ball through it. Walls on either side prevent the player from falling off while killing the player if they try and climb it avoiding the valley of thorns. The sides are coloured red using a shader to worn the player. At that point the player has control of a ball which has a dash using "space" which speeds up the player briefly and lets them pass through the thorns. The balls material changes to match the ground as they dash and turn blue when the dash is in cooldown. The camera has a distance variable which can be adjusted, it will make sure to always face forward, smoothly and always look at the ball using trigonometry.
 
-![tree_ref](https://github.com/Marcin7373/Games-Engines-Assignment/blob/master/Ref/tree_ref.gif?raw=true)  
-By: https://github.com/mattatz/unity-procedural-tree
+The maze of branches is distributed using perlin noise by the spawners which spawn a number of branches which grow independently in clusters. But dont start growing until the player is in range as the growth is quick initially. The branches are spawned on top of the curved and noisy mesh by having the BranchSpawner use raycasting to move to the surface. Each branch grows using Lerping in three stages. First it grows quickly using scale while rotating making it look more dynamic. There are many randomizations that make them grow to different angles or start at different angles as well as Lerping in position slightly making them behave differently from each other. As the growth gets slower it enters the second stage where it grows at a constant rate until third stage where it stops growing simply rotates very slowly toward the player. These branches are turned inactive when the player gets far enough away from them for efficiency.
+The code layout follows a tree like structure where a branch cluster is spawned by a BranchSpawner which is spawned in a pattern using perlin noise by the ForestSpawner. It also randomly picks BranchSpawners to skip to create holes for the player to get through. That ForestSpawner is then attached to the plane which is generated into a U-curve using a sine wave and perlin noise using the TerrainPerlinNoise script.
 
+## Best Part
+The best part is probably the branch growing algorithm combined with the branch spawning making the environment feel alive as it tries to get the player which took alot of time to get to feel right, parts of it moving erratically making it look almost creepy. As well as the branches spawning on an uneven terrain and it being playable as a game not just a tech demo with many options for difficulty adjustment.
 
-Some interesting ways in which i thought of generating these trees and bushes was without using the inbuilt tree object in unity similar to this video using fractals except i dont want my results to look so symmetrical and planned. My plants need to look and grow dynamically at the player as they move.
+## Demo
+[![YouTube](http://img.youtube.com/vi/bqs-oxIBY4U/0.jpg)](https://youtu.be/bqs-oxIBY4U)
 
-[![YouTube](http://img.youtube.com/vi/VXegg-HGT0s/0.jpg)](http://www.youtube.com/watch?v=VXegg-HGT0s)
+## Options for Setup
+- In the Grow script the radius for spawning controls how early the branches grow when the player gets close and the despawning value can be decreased to increase performance.
+- In branchSpawn more tree branches can be added to increase veriety.
+- In the ForestSpawner lGap and wGap can be changed to increse the gaps between branch clusters to make the game easier. The multiplier can also be increased to increase the amplitude of the perlin noise for the branches making a pattern less apparent and the game harder.
+- In the Controller the cooldownRate can be increased and dashLength and speed can be increased to make the game easier.
+- TerrainPerlinNoise script has a multiplier and gradient variables for perlin noise adjustments.
 
-Also I thought this was pretty cool even though it's probably not applicable to my project because its 2D.  
-https://trasevol-dog.itch.io/forest
+## Potential bugs
+The BranchSpawer scripts send out a raycast on start to spawn on top of the mesh, but the mesh may not generate fast enough making the branches spawn below the mesh.
+To fix make the ForestSpwaner script go last in Project settings execution order, so that it goes after the TerrainPerlinNoise script which is the "default" label on that list.
 
-I couldn't find much more that did anything similar to what i want to do other than some tree growing, some of which only upscaled the whole tree.
+Tree Prefabs when selected have a weird bug where the cursor and the inspector icon blink and load over and over again, found no way to fit it, but game runs fine as long as the tree object is not selected and visible in the inspector.
 
-## Gameplay
-The player will start in a plain field with a line of sight at the goal unable to move for a few seconds as the plants start growing infront of them obscuring their vision of the goal. They will then roll around as a ball avoiding thorny branches growing towards them needing to be constantly moving looking for openings. This can create an impossible scenario where the randomly generated branches grow in a way that traps the player. So the player will have an ability where they can harden and push through the branches for a limited amount of time.  
-The player from the start will lose sight of the goal so i have some solutions which i will test to see which works best. I could give the player a directional indicator above them. Give them the ability to jump just high enough to see above the thicker bushes while giving them a new mechaninc to play with to avoid newer freshly growing branches that are low enough to jump. Or simply have the camera be high above the player to let them see everything ahead of them if it turns out the game is too hard.  
-Another possible mechanic could involve having the branches in the player cone of vision to grow faster.
-
-## Plan
-This project may be over ambitious for me so here is my plan step by step proioritizing things that should be done first.
-
-- Make a thorny bush that grows in-game from a specific point with the branches growing at random. (Optional taller tree variant)
-- Make the trees/bushes grow randomly on a plane within a radius of the player (possibly in a pattern making the maze)
-- Turn it into a playable game where a make the player character ball with controls and a goal to go towards.
-- (If somehow i get to this point) The plane/ground could be made procedurally to make it more dynamic.
+### Sources Used
+I used a tutorial video to get a start applying perlin noise to a plane, but had to figure out the balance and sine wave layer on top on my own.
