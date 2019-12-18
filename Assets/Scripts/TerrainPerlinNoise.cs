@@ -6,7 +6,8 @@ public class TerrainPerlinNoise : MonoBehaviour
 {
     private Mesh meshFilter;
     private MeshCollider meshCollider;
-    public float multiplier = 5f, gradient = 5f, gradSmall, multSmall, perlinNoise;
+    public float multiplier = 5f, gradient = 5f;
+    private float perlinNoise, sineLen = 0.57f, amp = 25f, sine;
 
     void Awake()
     {
@@ -17,7 +18,7 @@ public class TerrainPerlinNoise : MonoBehaviour
     void Start()
     {
         Vector3[] vertices = meshFilter.vertices;
-        float x = 0, z = 0;
+        float x = 0, z = 0, y = transform.position.y;
 
         for (int i = 0; i < vertices.Length; i++)
         {
@@ -25,7 +26,16 @@ public class TerrainPerlinNoise : MonoBehaviour
             z = (transform.position.z + vertices[i].z) / gradient;
 
             perlinNoise = (Mathf.PerlinNoise(x, z) - 0.5f) * multiplier;
-            vertices[i].y = perlinNoise;
+
+            if ((Mathf.Sin((i + 3.1f) * sineLen) * amp) > 9f)
+            {
+                sine = (Mathf.Sin((i + 3.1f) * sineLen) * amp);
+            }
+            else
+            {
+                sine = 0f;
+            }
+            vertices[i].y = sine + perlinNoise;
         }
 
         meshFilter.vertices = vertices;

@@ -46,7 +46,6 @@ public class Grow : MonoBehaviour
 
         if (startGrow)
         {
-
             //    slowdown as it goes * half speed
             prog += Time.deltaTime * (1 - prog) * speed;
             if (prog < 0.7f)

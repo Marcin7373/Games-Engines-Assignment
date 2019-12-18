@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Controller : MonoBehaviour
 {
-    public Transform target;
     private Rigidbody rb;
     private MeshRenderer mr;
     private float move, rotate, speed = 100, dashCooldown = 0;
@@ -12,16 +12,13 @@ public class Controller : MonoBehaviour
     private Vector3 movement;
     public Material[] mat;
     private SphereCollider sCollider;
+    public float dashLength = 1.5f, cooldownRate = 0.5f;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         mr = GetComponent<MeshRenderer>();
         sCollider = GetComponent<SphereCollider>();
-    }
-    void Start()
-    {
-        
     }
 
     void Update()
@@ -46,7 +43,7 @@ public class Controller : MonoBehaviour
     {
         if (dashCooldown > 0 && !dashing) //delay to dash again
         {
-            dashCooldown -= Time.deltaTime * 2;
+            dashCooldown -= Time.deltaTime * cooldownRate;
             dashing = false;
             mr.material = mat[0];
             Physics.IgnoreLayerCollision(0, 8, false);
@@ -54,7 +51,7 @@ public class Controller : MonoBehaviour
         else if (dashing) //dashing
         {
             dashCooldown += Time.deltaTime;
-            if (dashCooldown >= 1.5f) //dash length
+            if (dashCooldown >= dashLength) //dash length
             {
                 dashing = false;
             }
@@ -64,6 +61,14 @@ public class Controller : MonoBehaviour
         else
         {
             mr.material = mat[2];
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Respawn")
+        {
+            SceneManager.LoadScene(0);
         }
     }
 }

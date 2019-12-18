@@ -19,7 +19,7 @@ public class BranchSpawn : MonoBehaviour
 
     void Start()
     {
-        if (Physics.Raycast(ray, out hit, 50f))
+        if (Physics.Raycast(ray, out hit, 70f))
         {
             transform.position = hit.point;
         }
