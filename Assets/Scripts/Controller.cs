@@ -7,12 +7,12 @@ public class Controller : MonoBehaviour
 {
     private Rigidbody rb;
     private MeshRenderer mr;
-    private float move, rotate, speed = 100, dashCooldown = 0;
+    private float move, rotate, dashCooldown = 0;
     private bool dashing;
     private Vector3 movement;
     public Material[] mat;
     private SphereCollider sCollider;
-    public float dashLength = 1.5f, cooldownRate = 0.5f;
+    public float dashLength = 1.5f, cooldownRate = 0.5f, speed = 100f;
 
     private void Awake()
     {
@@ -57,6 +57,7 @@ public class Controller : MonoBehaviour
             }
             mr.material = mat[1];
             Physics.IgnoreLayerCollision(0, 8, true);
+            rb.AddForce(movement * 30f * Time.deltaTime);
         }
         else
         {
@@ -67,6 +68,18 @@ public class Controller : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Respawn")
+        {
+            SceneManager.LoadScene(0);
+        }
+        if (collision.gameObject.tag == "Finish")
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground" && transform.position.y > 5)
         {
             SceneManager.LoadScene(0);
         }

@@ -43,9 +43,4 @@ public class TerrainPerlinNoise : MonoBehaviour
         meshFilter.RecalculateNormals();
         meshCollider.sharedMesh = meshFilter;
     }
-
-    void Update()
-    {
-        
-    }
 }

@@ -41,9 +41,4 @@ public class ForestSpawner : MonoBehaviour
             
         }
     }
-
-    void Update()
-    {
-        
-    }
 }

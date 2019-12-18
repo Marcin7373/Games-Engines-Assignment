@@ -27,8 +27,7 @@ public class BranchSpawn : MonoBehaviour
         for (int i = 0; i < treeNum; i++) {
             treeTemp[i] = Instantiate(tree[i], transform.position, transform.rotation);
             treeTemp[i].transform.localScale = new Vector3(0.01f,0.01f,0.01f);
-            treeTemp[i].transform.parent = transform;
-            //treeTemp[i].SetActive(false);       
+            treeTemp[i].transform.parent = transform;     
         }
     }
 
