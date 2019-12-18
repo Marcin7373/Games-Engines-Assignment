@@ -5,8 +5,6 @@ using UnityEngine;
 public class ForestSpawner : MonoBehaviour
 {
     public GameObject spawnerTemp;
-    public GameObject player;
-    public GameObject finish;
     private int rows, cols;
     public GameObject[,] spawner;
     private Transform tr;
@@ -26,9 +24,6 @@ public class ForestSpawner : MonoBehaviour
 
     void Start()
     {
-        finish.transform.position = new Vector3(finish.transform.position.x, finish.transform.position.y, length/10 + 1);
-        player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -length/10 - 1);
-
         for (int r = 0; r < rows; r++)
         {
             for (int c = 0; c < cols; c++)

@@ -39,7 +39,7 @@ public class Grow : MonoBehaviour
         {
             startGrow = true;
         }
-
+        //direction of the player to grow towards                      targetHeight - aimeing with forward vector below player
         Vector3 direction = new Vector3(player.position.x, player.position.y - randTargetHeight, player.position.z) - transform.position;
         Quaternion targetRot = Quaternion.LookRotation(direction, Vector3.up);
         targetRot = Quaternion.Euler(targetRot.eulerAngles.x, targetRot.eulerAngles.y+(Random.Range(0, 180)-90), targetRot.eulerAngles.z);
@@ -48,25 +48,23 @@ public class Grow : MonoBehaviour
         {
             //    slowdown as it goes * half speed
             prog += Time.deltaTime * (1 - prog) * speed;
-            if (prog < 0.7f)
+            if (prog < 0.7f) //stage 1
             {
-
                 speed = Mathf.Lerp(randSpeedMax, randSpeedMin, prog);
                 transform.localScale = Vector3.Lerp(new Vector3(0, 0, 0), new Vector3(1, randSpeedMax + 0.2f, 1), prog);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, prog * Time.deltaTime);
                 transform.position = Vector3.Lerp(startHeight, new Vector3(startHeight.x, startHeight.y + height, startHeight.z + 0.1f), prog);
             }
-            else if (prog < 0.9f)
+            else if (prog < 0.9f) //stage 2
             {
-                //speed = randSpeedMax;
                 transform.localScale = Vector3.Lerp(new Vector3(0, 0, 0), new Vector3(1, randSpeedMax + 0.2f, 1), prog);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, prog * Time.deltaTime * 0.2f);
             }
-            else
+            else                //stage 3
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, prog * Time.deltaTime * 0.09f);
             }
-
+            //despawn if too far away
             if ((player.position - transform.position).magnitude > deSpawnRad)
             {
                 gameObject.SetActive(false);

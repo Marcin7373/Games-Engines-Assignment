@@ -14,7 +14,7 @@ public class BranchSpawn : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
-        ray = new Ray(transform.position, -Vector3.up);
+        ray = new Ray(transform.position, -Vector3.up); //will spawn above the mesh
     }
 
     void Start()
@@ -29,10 +29,5 @@ public class BranchSpawn : MonoBehaviour
             treeTemp[i].transform.localScale = new Vector3(0.01f,0.01f,0.01f);
             treeTemp[i].transform.parent = transform;     
         }
-    }
-
-    void Update()
-    {
-        
     }
 }

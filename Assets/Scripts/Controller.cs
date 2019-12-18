@@ -46,7 +46,7 @@ public class Controller : MonoBehaviour
             dashCooldown -= Time.deltaTime * cooldownRate;
             dashing = false;
             mr.material = mat[0];
-            Physics.IgnoreLayerCollision(0, 8, false);
+            Physics.IgnoreLayerCollision(0, 8, false); //dont pass through trees
         }
         else if (dashing) //dashing
         {
@@ -56,7 +56,7 @@ public class Controller : MonoBehaviour
                 dashing = false;
             }
             mr.material = mat[1];
-            Physics.IgnoreLayerCollision(0, 8, true);
+            Physics.IgnoreLayerCollision(0, 8, true); //pass through trees
             rb.AddForce(movement * 30f * Time.deltaTime);
         }
         else
@@ -67,7 +67,7 @@ public class Controller : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Respawn")
+        if (collision.gameObject.tag == "Respawn") //hit tree
         {
             SceneManager.LoadScene(0);
             dashCooldown = 1f;
@@ -80,7 +80,7 @@ public class Controller : MonoBehaviour
     }
 
     void OnCollisionStay(Collision collision)
-    {
+    {   //tried to go up the side of the wall
         if (collision.gameObject.tag == "Ground" && transform.position.y > 4)
         {
             SceneManager.LoadScene(0);

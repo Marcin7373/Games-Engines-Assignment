@@ -6,7 +6,7 @@ public class TerrainPerlinNoise : MonoBehaviour
 {
     private Mesh meshFilter;
     private MeshCollider meshCollider;
-    public float multiplier = 5f, gradient = 5f;
+    public float multiplier = 5f, gradient = 0.1f;
     private float perlinNoise, sineLen = 0.57f, amp = 25f, sine;
 
     void Awake()
@@ -27,6 +27,7 @@ public class TerrainPerlinNoise : MonoBehaviour
 
             perlinNoise = (Mathf.PerlinNoise(x, z) - 0.5f) * multiplier;
 
+            //flattening the bottom, 3.1 move the wave in the middle creating a valley
             if ((Mathf.Sin((i + 3.1f) * sineLen) * amp) > 9f)
             {
                 sine = (Mathf.Sin((i + 3.1f) * sineLen) * amp);

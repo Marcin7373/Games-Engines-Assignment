@@ -27,32 +27,6 @@
 			half _Metallic;
 			fixed4 _Color;
 
-			// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
-			// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
-			// #pragma instancing_options assumeuniformscaling
-			UNITY_INSTANCING_BUFFER_START(Props)
-				// put more per-instance properties here
-			UNITY_INSTANCING_BUFFER_END(Props)
-
-			float3 hsv_to_rgb(float3 HSV)
-			{
-				float3 RGB = HSV.z;
-
-				float var_h = HSV.x * 6;
-				float var_i = floor(var_h);   // Or ... var_i = floor( var_h )
-				float var_1 = HSV.z * (1.0 - HSV.y);
-				float var_2 = HSV.z * (1.0 - HSV.y * (var_h - var_i));
-				float var_3 = HSV.z * (1.0 - HSV.y * (1 - (var_h - var_i)));
-				if (var_i == 0) { RGB = float3(HSV.z, var_3, var_1); }
-				else if (var_i == 1) { RGB = float3(var_2, HSV.z, var_1); }
-				else if (var_i == 2) { RGB = float3(var_1, HSV.z, var_3); }
-				else if (var_i == 3) { RGB = float3(var_1, var_2, HSV.z); }
-				else if (var_i == 4) { RGB = float3(var_3, var_1, HSV.z); }
-				else { RGB = float3(HSV.z, var_1, var_2); }
-
-				return (RGB);
-			}
-
 			void surf(Input IN, inout SurfaceOutputStandard o) {
 
 				float red = IN.worldPos.y / 0.9;
