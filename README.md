@@ -23,5 +23,5 @@ To fix make the ForestSpwaner script go last in Project settings execution order
 
 Tree Prefabs when selected have a weird bug where the cursor and the inspector icon blink and load over and over again, found no way to fit it, but game runs fine as long as the tree object is not selected and visible in the inspector.
 
-# Sources Used
+### Sources Used
 I used a tutorial video to get a start applying perlin noise to a plane, but had to figure out the balance and sine wave layer on top on my own.
